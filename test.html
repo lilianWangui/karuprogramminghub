@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Image Upload Example</title>
+  </head>
+  <body>
+    <h1>Image Upload Example</h1>
+    <form>
+      <label for="imageUpload">Select an image:</label>
+      <input type="file" id="imageUpload" name="imageUpload">
+      <br><br>
+      <input type="button" value="Upload Image" onclick="uploadImage()">
+    </form>
+    <br><br>
+    <div id="imageContainer"></div>
+
+    <script>
+      function uploadImage() {
+        const input = document.getElementById("imageUpload");
+        if (input.files && input.files[0]) {
+          const reader = new FileReader();
+          reader.onload = function (e) {
+            const img = document.createElement("img");
+            img.src = e.target.result;
+            document.getElementById("imageContainer").appendChild(img);
+          };
+          reader.readAsDataURL(input.files[0]);
+        }
+      }
+    </script>
+  </body>
+</html>
